@@ -13,7 +13,8 @@ const PostSchema = new mongoose.Schema({
   content: String,
   date: {
     type: Date,
-    default: new Date(Date.now()),
+    default: Date.now, // Mongoose will run Date.now() every time we make a doc
+    // default: new Date(Date.now()) // Mongoose will run Date.now once when the app loads this file
   },
 });
 
