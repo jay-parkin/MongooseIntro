@@ -2,19 +2,20 @@
 
 const { PostModel } = require("../../models/PostModel");
 
-async function createPost(title, content = null) {
+async function createPost(title, content = null, authorId) {
   let result = await PostModel.create({
     title: title,
     content: content,
+    author: authorId,
     // leaving "date" out since its default is Date.now
   });
 
   return result;
 }
 
-// findOnePost({title:"Jason's Cool Blog Post"});
+// findOnePost({title:"Alex's Cool Blog Post"});
 async function findOnePost(query) {
-  let result = await PostModel.findOne(query);
+  let result = await PostModel.findOne(query).populate("author");
 
   return result;
 }

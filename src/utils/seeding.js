@@ -1,14 +1,33 @@
 const { createPost, findManyPosts, findOnePost } = require("./crud/PostCrud");
+const { createUser } = require("./crud/UserCrud");
 const { dbConnect, dbDisconnect } = require("./database");
+
+require("dotenv").config();
 
 async function seed() {
   // await dbConnect();
 
-  await createPost("Example title", "Example content blah blah blah");
+  let newUser = await createUser("alexh", true, "alex@bigfootds.com");
+
+  await createPost(
+    "Example title",
+    [
+      {
+        languageCode: "en",
+        content: "Example content blah blah blah",
+      },
+      {
+        languageCode: "fr",
+        content: "Omelette au fromage",
+      },
+    ],
+    newUser.id
+  );
 
   let resultFindOne = await findOnePost({
     title: "Example title",
-    content: "Example content blah blah blah",
+    "content.languageCode": "en",
+    "content.content": "Example content blah blah blah",
   });
 
   console.log(resultFindOne.title);

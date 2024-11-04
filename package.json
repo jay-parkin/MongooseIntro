@@ -1,13 +1,14 @@
 {
-  "name": "mongooseintro",
+  "name": "feb24-t4w1-mongoose-intro",
   "version": "1.0.0",
-  "description": "Intro to MongooseJS and MongoDB",
+  "description": "Intro to MongooseJS and MongoDB, review of ExpressJS.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "seed": "node src/utils/seeding.js",
     "start:seed": "npm run seed && npm run start",
+    "damian-example": "node src/utils/seeding.js && node src/index.js",
     "example-chain": "npm run seed && npm run start",
     "db:drop": "node src/utils/dropping.js",
     "db:drop-and-seed": "npm run db:drop && npm run seed"
